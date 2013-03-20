@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Trabalho Grafos Jogos - 8 Rainhas</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <script src="js/jquery-1.9.1.min.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <div id="workarea" class="area"></div>
+        <div id="footer" class="area">
+            <button type="button" onclick="window.location.reload(true)">Reiniciar</button>
+            <button type="button" onclick="showSobre()">Sobre</button>
+        </div>
+    </body>
+    <script type="text/javascript" >
+        var posicoes = [0, 1, 2, 3, 4, 5, 6, 7];
+        posicoes[0] = [0, 0, 0, 0, 0, 0, 0, 0];
+        posicoes[1] = [0, 0, 0, 0, 0, 0, 0, 0];
+        posicoes[2] = [0, 0, 0, 0, 0, 0, 0, 0];
+        posicoes[3] = [0, 0, 0, 0, 0, 0, 0, 0];
+        posicoes[4] = [0, 0, 0, 0, 0, 0, 0, 0];
+        posicoes[5] = [0, 0, 0, 0, 0, 0, 0, 0];
+        posicoes[6] = [0, 0, 0, 0, 0, 0, 0, 0];
+        posicoes[7] = [0, 0, 0, 0, 0, 0, 0, 0];        
+        $(document).ready(function() {
+            var div = '';
+            for (var i = 0; i < 64; i++) {
+                var linha = parseInt(i / 8);
+                var coluna = i % 8;
+                var _i = i + 1;
+                if (linha % 2 == 0) {
+                    if (coluna % 2 == 0) {
+                        div += "<div id='item-" + linha + "-" + coluna +"' onclick='setPoint(" + linha + ", " + coluna  + ", false);' class='campo-tabuleiro'>" + _i + "</div>";
+                    } else {
+                        div += "<div id='item-" + linha + "-" + coluna +"' onclick='setPoint(" + linha + ", " + coluna  + ", false);' class='campo-tabuleiro campo-gray'>" + _i + "</div>";
+                    }
+                } else {
+                    if (coluna % 2 == 1) {
+                        div += "<div id='item-" + linha + "-" + coluna +"' onclick='setPoint(" + linha + ", " + coluna  + ", false);' class='campo-tabuleiro'>" + _i + "</div>";
+                    } else {
+                        div += "<div id='item-" + linha + "-" + coluna +"' onclick='setPoint(" + linha + ", " + coluna  + ", false);' class='campo-tabuleiro campo-gray'>" + _i + "</div>";
+                    }
+                }
+            }
+            $('#workarea').html(div);
+        });
+        
+        function setPoint(linha, coluna, reload) {
+            if (posicoes[linha][coluna] == 0) {                
+                setValues(linha, coluna, 2);
+                posicoes[linha][coluna] = 1;
+            } else if (posicoes[linha][coluna] == 1) {
+                posicoes[linha][coluna] = 0;
+                setValues(linha, coluna, 0);
+            }
+            if (reload) {
+                reloadMatriz();
+            }
+            setLayout();
+        }
+        
+        function setValues(linha, coluna, val) {
+            for (var i = 0; i < 8; i++) {
+                posicoes[i][coluna] = val;
+                posicoes[linha][i] = val;
+            }
+            var x = linha - 1;
+            var y = coluna - 1;
+            while (x >= 0 && y >= 0) {
+                posicoes[x][y] = val;
+                x--;
+                y--;
+            }
+            var x = linha + 1;
+            var y = coluna + 1;
+            while (x < 8 && y < 8) {
+                posicoes[x][y] = val;
+                x++;
+                y++;
+            }
+            var x = linha - 1;
+            var y = coluna + 1;
+            while (x >= 0 && y < 8) {
+                posicoes[x][y] = val;
+                x--;
+                y++;
+            }
+            var x = linha + 1;
+            var y = coluna - 1;
+            while (x < 8 && y >= 0) {
+                posicoes[x][y] = val;
+                x++;
+                y--;
+            }
+        }
+        
+        function setLayout() {
+            $('.campo-tabuleiro').each(function(i, e) {
+                var id = e.id.split('-');
+                var linha = parseInt(id[1]);
+                var coluna = parseInt(id[2]);
+                if (posicoes[linha][coluna] == 0) {
+                    $(e).removeClass('campo-rainha');
+                    $(e).removeClass('campo-close');
+                } else if (posicoes[linha][coluna] == 1) {
+                    $(e).addClass('campo-rainha');
+                } else {
+                    $(e).addClass('campo-close');
+                }
+            });
+            if ($('.campo-rainha').length == 8) {
+                alert('Parabéns! Você venceu!');
+            }
+        }
+        
+        function showSobre() {
+            alert();
+        }
+        
+        function reloadMatriz() {
+            $('.campo-rainha').each(function(i, e) {
+                var id = e.id.split('-');
+                var linha = parseInt(id[1]);
+                var coluna = parseInt(id[2]);
+                console.log(linha, coluna);
+                setPoint(linha, coluna, true);
+            });
+        }
+    </script>
+</html>

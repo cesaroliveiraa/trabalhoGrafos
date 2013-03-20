@@ -1,0 +1,21 @@
+.area{ 
+    width: 50%;
+    margin: auto;
+}
+#footer { height: 10%; }
+#workarea { height: 80%; }
+.campo-tabuleiro {
+    width: 75px;
+    height: 75px;
+    display: inline-block;
+    background-color: white;
+    border: 1px solid;
+}
+.campo-gray { background-color: gray; }
+.campo-close { background-color: red; }
+.campo-rainha {
+    background-image: url(minipeca.png);
+    width: 75px;
+    height: 75px;
+}
+
