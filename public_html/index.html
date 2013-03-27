@@ -31,30 +31,28 @@
                 var _i = i + 1;
                 if (linha % 2 == 0) {
                     if (coluna % 2 == 0) {
-                        div += "<div id='item-" + linha + "-" + coluna +"' onclick='setPoint(" + linha + ", " + coluna  + ", false);' class='campo-tabuleiro'>" + _i + "</div>";
+                        div += "<div id='item-" + linha + "-" + coluna +"' onclick='setPoint(" + linha + ", " + coluna  + ");' class='campo-tabuleiro'>" + _i + "</div>";
                     } else {
-                        div += "<div id='item-" + linha + "-" + coluna +"' onclick='setPoint(" + linha + ", " + coluna  + ", false);' class='campo-tabuleiro campo-gray'>" + _i + "</div>";
+                        div += "<div id='item-" + linha + "-" + coluna +"' onclick='setPoint(" + linha + ", " + coluna  + ");' class='campo-tabuleiro campo-gray'>" + _i + "</div>";
                     }
                 } else {
                     if (coluna % 2 == 1) {
-                        div += "<div id='item-" + linha + "-" + coluna +"' onclick='setPoint(" + linha + ", " + coluna  + ", false);' class='campo-tabuleiro'>" + _i + "</div>";
+                        div += "<div id='item-" + linha + "-" + coluna +"' onclick='setPoint(" + linha + ", " + coluna  + ");' class='campo-tabuleiro'>" + _i + "</div>";
                     } else {
-                        div += "<div id='item-" + linha + "-" + coluna +"' onclick='setPoint(" + linha + ", " + coluna  + ", false);' class='campo-tabuleiro campo-gray'>" + _i + "</div>";
+                        div += "<div id='item-" + linha + "-" + coluna +"' onclick='setPoint(" + linha + ", " + coluna  + ");' class='campo-tabuleiro campo-gray'>" + _i + "</div>";
                     }
                 }
             }
             $('#workarea').html(div);
         });
         
-        function setPoint(linha, coluna, reload) {
+        function setPoint(linha, coluna) {
             if (posicoes[linha][coluna] == 0) {                
                 setValues(linha, coluna, 2);
                 posicoes[linha][coluna] = 1;
             } else if (posicoes[linha][coluna] == 1) {
                 posicoes[linha][coluna] = 0;
                 setValues(linha, coluna, 0);
-            }
-            if (reload) {
                 reloadMatriz();
             }
             setLayout();
@@ -62,34 +60,46 @@
         
         function setValues(linha, coluna, val) {
             for (var i = 0; i < 8; i++) {
-                posicoes[i][coluna] = val;
-                posicoes[linha][i] = val;
+                if (posicoes[i][coluna] != 1) {
+                    posicoes[i][coluna] = val;
+                }
+                if (posicoes[linha][i] != 1) {
+                    posicoes[linha][i] = val;
+                }
             }
             var x = linha - 1;
             var y = coluna - 1;
             while (x >= 0 && y >= 0) {
-                posicoes[x][y] = val;
+                if (posicoes[x][y] != 1) {
+                    posicoes[x][y] = val;
+                }
                 x--;
                 y--;
             }
             var x = linha + 1;
             var y = coluna + 1;
             while (x < 8 && y < 8) {
-                posicoes[x][y] = val;
+                if (posicoes[x][y] != 1) {
+                    posicoes[x][y] = val;
+                }
                 x++;
                 y++;
             }
             var x = linha - 1;
             var y = coluna + 1;
             while (x >= 0 && y < 8) {
-                posicoes[x][y] = val;
+                if (posicoes[x][y] != 1) {
+                    posicoes[x][y] = val;
+                }
                 x--;
                 y++;
             }
             var x = linha + 1;
             var y = coluna - 1;
             while (x < 8 && y >= 0) {
-                posicoes[x][y] = val;
+                if (posicoes[x][y] != 1) {
+                    posicoes[x][y] = val;
+                }
                 x++;
                 y--;
             }
@@ -119,12 +129,14 @@
         }
         
         function reloadMatriz() {
-            $('.campo-rainha').each(function(i, e) {
+            $('.campo-rainha').each(function(i, e) {                
                 var id = e.id.split('-');
                 var linha = parseInt(id[1]);
                 var coluna = parseInt(id[2]);
-                console.log(linha, coluna);
-                setPoint(linha, coluna, true);
+                console.log(linha);
+                console.log(coluna);
+                console.log(posicoes);
+                setValues(linha, coluna, 2);
             });
         }
     </script>
