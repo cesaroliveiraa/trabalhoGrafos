@@ -53,17 +53,19 @@
             } else if (posicoes[linha][coluna] == 1) {
                 posicoes[linha][coluna] = 0;
                 setValues(linha, coluna, 0);
-                reloadMatriz();
-            }
+            }            
             setLayout();
+            reloadMatriz();
         }
         
         function setValues(linha, coluna, val) {
             for (var i = 0; i < 8; i++) {
                 if (posicoes[i][coluna] != 1) {
+                    console.log("coluna:" + coluna + ' i:' + i);
                     posicoes[i][coluna] = val;
                 }
                 if (posicoes[linha][i] != 1) {
+                    console.log("linha:" + linha+ ' i:' + i);
                     posicoes[linha][i] = val;
                 }
             }
@@ -71,6 +73,7 @@
             var y = coluna - 1;
             while (x >= 0 && y >= 0) {
                 if (posicoes[x][y] != 1) {
+                    console.log("x:" + x + ' y:' + y);
                     posicoes[x][y] = val;
                 }
                 x--;
@@ -80,6 +83,7 @@
             var y = coluna + 1;
             while (x < 8 && y < 8) {
                 if (posicoes[x][y] != 1) {
+                    console.log("x:" + x + ' y:' + y);
                     posicoes[x][y] = val;
                 }
                 x++;
@@ -89,6 +93,7 @@
             var y = coluna + 1;
             while (x >= 0 && y < 8) {
                 if (posicoes[x][y] != 1) {
+                    console.log("x:" + x + ' y:' + y);
                     posicoes[x][y] = val;
                 }
                 x--;
@@ -98,6 +103,7 @@
             var y = coluna - 1;
             while (x < 8 && y >= 0) {
                 if (posicoes[x][y] != 1) {
+                    console.log("x:" + x + ' y:' + y);
                     posicoes[x][y] = val;
                 }
                 x++;
@@ -115,8 +121,10 @@
                     $(e).removeClass('campo-close');
                 } else if (posicoes[linha][coluna] == 1) {
                     $(e).addClass('campo-rainha');
+                    $(e).removeClass('campo-close');
                 } else {
                     $(e).addClass('campo-close');
+                    $(e).removeClass('campo-rainha');
                 }
             });
             if ($('.campo-rainha').length == 8) {
@@ -133,11 +141,10 @@
                 var id = e.id.split('-');
                 var linha = parseInt(id[1]);
                 var coluna = parseInt(id[2]);
-                console.log(linha);
-                console.log(coluna);
-                console.log(posicoes);
-                setValues(linha, coluna, 2);
+                posicoes[linha][coluna] = 1;
+                setValues(linha, coluna, 2);                
             });
+            setLayout();
         }
     </script>
 </html>
