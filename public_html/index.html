@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Trabalho Grafos Jogos - 8 Rainhas</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <script src="js/jquery-1.9.1.min.js" type="text/javascript"></script>
+        <script src="js/jogo.js" type="text/javascript"></script>
+        <script src="js/pilha.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <div id="workarea" class="area"></div>
+        <div id="footer" class="area">
+            <button type="button" onclick="window.location.reload(true)">Reiniciar</button>
+            <button type="button" onclick="showSobre()">Sobre</button>
+        </div>
+    </body>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var div = '';
+            /*
+             * Define o layout das 64 peças do tabuleiro
+             */
+            for (var i = 0; i < 64; i++) {
+                var linha = parseInt(i / 8);
+                var coluna = i % 8;
+                var _i = i + 1;
+                // Faz a troca de layout das linhas, verificando se ela é par ou impar
+                if (linha % 2 == 0) {
+                    // Faz a troca de layout das colunas, verificando se ela é par ou impar
+                    if (coluna % 2 == 0) {
+                        div += "<div id='item-" + linha + "-" + coluna +"' onclick='setPoint(" + linha + ", " + coluna  + ");' class='campo-tabuleiro'>" + _i + "</div>";
+                    } else {
+                        div += "<div id='item-" + linha + "-" + coluna +"' onclick='setPoint(" + linha + ", " + coluna  + ");' class='campo-tabuleiro campo-gray'>" + _i + "</div>";
+                    }
+                } else {
+                    // Faz a troca de layout das colunas, verificando se ela é par ou impar
+                    if (coluna % 2 == 1) {
+                        div += "<div id='item-" + linha + "-" + coluna +"' onclick='setPoint(" + linha + ", " + coluna  + ");' class='campo-tabuleiro'>" + _i + "</div>";
+                    } else {
+                        div += "<div id='item-" + linha + "-" + coluna +"' onclick='setPoint(" + linha + ", " + coluna  + ");' class='campo-tabuleiro campo-gray'>" + _i + "</div>";
+                    }
+                }
+            }
+            $('#workarea').html(div);
+        });
+    </script>
+</html>
