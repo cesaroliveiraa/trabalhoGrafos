@@ -25,9 +25,15 @@
     bottom: 0;
     left: 0;
     z-index: 1040;
-    background-color: grey;    
+    background-color: grey;
     opacity: 0.8;
     filter: alpha(opacity=80);
     text-align: center;
     display: none;
+}
+#estatistica {
+	display: none;
+}
+#estatistica label {
+	font-weight: bold;
 }

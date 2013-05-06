@@ -14,13 +14,11 @@
         <div id="footer" class="area">
             <button type="button" onclick="resetGame();">Reiniciar</button>
             <button type="button" onclick="showSobre();">Sobre</button>
-            <button type="button" onclick="showLoad();buscaCega();">Busca Cega - </button>
-            <button type="button" onclick="showLoad();buscaHeuristica();">Busca Heurística - </button>
-        </div>
-        <div id="loading">
-            <img src="css/loader.gif" />
-            <br /><br />
-            <span>Carregando...</span>
+            <button type="button" onclick="buscaCega();">Busca Cega - Profundidade limitada</button>
+            <button type="button" onclick="buscaHeuristica();">Busca Heurística - </button>
+			<div id="estatistica">
+				Número de passos efetuados: <label></label>
+			</div>
         </div>
         <script type="text/javascript">
             $(document).ready(function() {
@@ -51,34 +49,6 @@
                 }
                 $('#workarea').html(div);
             });
-            
-            /**
-             * Exibe o load enquanto carrega a simulação do tabuleiro
-             */
-            function showLoad() {
-                $('#loading').show();
-            };            
-            
-            /**
-             * Script que posiciona o load no meio da tela
-             */
-            function resizing()	{
-                var marginTop = ($(window).height())/2;
-                if (marginTop >= 0) {
-                    $('#loading img').css("margin-top", marginTop);
-                }
-            };
-            
-            $(window).load(function() {
-                resizing();
-            });
-            
-            $(window).resize(function() {
-                resizing();
-            });
-            /**
-             * Fim do script
-             */
         </script>
     </body>
 </html>
