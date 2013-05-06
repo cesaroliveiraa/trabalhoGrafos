@@ -1,7 +1,7 @@
 /*
  * Posições do tabuleiro indicada pelo tabuleiro,
  * no qual é indicado pelo seu indice o valor da linha
- * e depois as colunas 
+ * e depois as colunas
  */
 var posicoes    = [0, 1, 2, 3, 4, 5, 6, 7];
     posicoes[0] = [0, 0, 0, 0, 0, 0, 0, 0];
@@ -38,7 +38,7 @@ function setPoint(linha, coluna) {
     // Seta o layout dos status do tabuleiro
     setLayout();
     // Redefine todos os espaços do tabuleiro
-    reloadMatriz();    
+    reloadMatriz();
 }
 
 /**
@@ -130,7 +130,7 @@ function setLayout() {
         }
     });
     // Faz a verificação se o usuário conseguiu vencer o jogo
-    if (!venceu) verificaVenceu();    
+    if (!venceu) verificaVenceu();
 }
 
 /**
@@ -177,10 +177,12 @@ function reloadMatriz() {
  */
 function resetGame() {
     for (var i = 0; i < 8; i++) {
-        for (var j = 0; j < 8; j++) {        
+        for (var j = 0; j < 8; j++) {
             posicoes[i][j] = 0;
         }
     }
     setLayout();
+	$('#estatistica label').html('');
+	$('#estatistica').hide();
     venceu = false;
 }

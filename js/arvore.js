@@ -5,7 +5,7 @@
  * os filhos do tabuleiro atual
  */
 function setPointTree(tabuleiro) {
-    var posicoes = simulaMatriz(tabuleiro);    
+    var posicoes = simulaMatriz(tabuleiro);
     var pontosLivre = extraiPontos(posicoes);
     // Verifica se o tabuleiro simulado existe alguma posição vazia
     if (pontosLivre.length == 0) {
@@ -16,7 +16,7 @@ function setPointTree(tabuleiro) {
             var _tabuleiro = {
                 linha: pontosLivre[x][0],
                 coluna: pontosLivre[x][1],
-                filhos: new Array(),    
+                filhos: new Array(),
                 pai: tabuleiro
             };
             // CUIDADO! USO DE RECURSIVIDADE!
@@ -33,9 +33,12 @@ function setPointTree(tabuleiro) {
  * @returns object Arvore com todas as possibilidades do jogo
  */
 function novaArvore() {
+	var randomPosicao = parseInt(Math.random() * 63);
+	var linha = parseInt(randomPosicao / 8);
+	var coluna = randomPosicao % 8;
     var tabuleiro = {
-        linha: 0,
-        coluna: 3,
+        linha: linha,
+        coluna: coluna,
         filhos: new Array(),
         getPai: function() { return this; }
     }
@@ -72,9 +75,9 @@ function simulaMatriz(tabuleiro) {
         // Marca o ponto do tabuleiro inicial
         posicoes = setValuesMatriz(tabuleiro.linha, tabuleiro.coluna, 2, posicoes);
         posicoes[tabuleiro.linha][tabuleiro.coluna] = 1;
-        
+
         // Marca os pontos até encontrar a posição inicial
-        var pai = tabuleiro.pai;        
+        var pai = tabuleiro.pai;
         while (typeof(pai.pai) != 'undefined') {
             //console.log(pai);
             posicoes = setValuesMatriz(pai.linha, pai.coluna, 2, posicoes);
@@ -93,7 +96,7 @@ function simulaMatriz(tabuleiro) {
 /*
  * Posições do tabuleiro indicada pelo tabuleiro,
  * no qual é indicado pelo seu indice o valor da linha
- * e depois as colunas 
+ * e depois as colunas
  */
 function novaMatriz() {
     var posicoes    = [0, 1, 2, 3, 4, 5, 6, 7];
