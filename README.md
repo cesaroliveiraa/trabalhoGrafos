@@ -10,4 +10,7 @@ Para mais informações, você pode encontrar nos seguintes links:
 - Spanish: <a href="http://es.wikipedia.org/wiki/Problema_de_las_ocho_reinas">Wikipédia</a>
 
 Em um tabuleiro de 8x8, podemos realizar **92** soluções diferentes. Atráves de
-uma árvore, conseguimos percorrer por todas as alternativas vindas de um ponto inicial
+uma árvore, conseguimos percorrer por todas as alternativas vindas de um ponto inicial.
+Com isso foi feito a implementação e a exibição do número de passos utilizados para
+encontrar uma solução com o método de
+<a href="http://en.wikipedia.org/wiki/Depth-limited_search">busca em profundidade limitada</a>
