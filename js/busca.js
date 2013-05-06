@@ -1,17 +1,22 @@
 function iniciarBuscaProfundidadeLimitada() {
     var tabuleiro = novaArvore();
     var solucao = DLS(tabuleiro, 7);
-    console.log("Solucao:");
-    console.log(solucao);
-//    return solucao;
+	if (solucao) {
+		return solucao;
+	} else {
+		return false;
+	}
 }
 
 function DLS(node, num) {
-    console.log(num);
     if (num > 0) {
         for (x in node.filhos) {
-            DLS(node.filhos[x], num - 1);
-        }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+            var n = DLS(node.filhos[x], num - 1);
+			if (n) {
+				return n;
+			}
+        }
+		return false;
     } else {
         return node;
     }
