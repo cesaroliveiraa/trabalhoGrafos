@@ -1,9 +1,9 @@
-.area{
-    width: 50%;
+#workarea {
+    height: 650px;
+    width: 650px;
     margin: auto;
+    display: block;
 }
-#footer { height: 10%; }
-#workarea { height: 80%; }
 .campo-tabuleiro {
     width: 75px;
     height: 75px;
@@ -18,22 +18,5 @@
     width: 75px;
     height: 75px;
 }
-#loading {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1040;
-    background-color: grey;
-    opacity: 0.8;
-    filter: alpha(opacity=80);
-    text-align: center;
-    display: none;
-}
-#estatistica {
-	display: none;
-}
-#estatistica label {
-	font-weight: bold;
-}
+#estatistica { display: none; }
+#estatistica label { font-weight: bold; }

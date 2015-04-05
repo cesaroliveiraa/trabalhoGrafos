@@ -30,8 +30,8 @@ function exibicaoResultado() {
 		}, 2000);
 
 		// Exibe o número de passos utilizados
-		$('#estatistica label').html(cont);
-		$('#estatistica').show();
+        document.getElementById('estatistica').style.display = 'inline-block';
+        document.getElementById('estatistica-passos').innerText = cont;
 	} else {
 		alert("Não foi possível encontrar uma solução atráves desse ponto");
 	}

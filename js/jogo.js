@@ -110,27 +110,35 @@ function setValues(linha, coluna, val) {
  * @returns void
  */
 function setLayout() {
+    var campos = document.getElementsByClassName('campo-tabuleiro');
+    var i, e;
+    var id, linha, coluna;
     // Percorre todas os espaços do tabuleiro
-    $('.campo-tabuleiro').each(function(i, e) {
+    for (i = 0; i < 64; i++) {
+        e = campos[i];
         // Busca a linha e coluna do espaço indicada no id
-        var id = e.id.split('-');
-        var linha = parseInt(id[1]);
-        var coluna = parseInt(id[2]);
+        id = e.id.split('-');
+        linha = parseInt(id[1]);
+        coluna = parseInt(id[2]);
         // Verifica o status do espaço e
         // faz a atribuição necessária do layout no espaço
         if (posicoes[linha][coluna] == 0) {
-            $(e).removeClass('campo-rainha');
-            $(e).removeClass('campo-close');
+            e.className = getFullbaseClass(e.className);
         } else if (posicoes[linha][coluna] == 1) {
-            $(e).addClass('campo-rainha');
-            $(e).removeClass('campo-close');
+            e.className = getFullbaseClass(e.className) + " campo-rainha";
         } else {
-            $(e).addClass('campo-close');
-            $(e).removeClass('campo-rainha');
+            e.className = getFullbaseClass(e.className) + " campo-close";
         }
-    });
+    }
     // Faz a verificação se o usuário conseguiu vencer o jogo
     if (!venceu) verificaVenceu();
+}
+
+function getFullbaseClass(str) {
+    if (str.search(/campo-gray/) >= 0) {
+        return "campo-tabuleiro campo-gray";
+    }
+    return "campo-tabuleiro";
 }
 
 /**
@@ -138,18 +146,11 @@ function setLayout() {
  * @return void
  */
 function verificaVenceu() {
-    if ($('.campo-rainha').length >= 8) {
+    var rainhas = document.getElementsByClassName('campo-rainha');
+    if (rainhas.length >= 8) {
         alert('Parabéns! Você venceu!');
         venceu = true;
     }
-}
-
-/**
- * Mostra um alerta com os dados da equipe
- * @return void
- */
-function showSobre() {
-    alert("Trabalho de Grafos\nSistemas de Informação PUC-MG São Gabriel\nDesenvolvedores: César Oliveira e Phellipe Gonzaga\nDocumentação: Marcelo Prado, Wanderson Pinheiro, Karen Danielle");
 }
 
 /**
@@ -158,7 +159,11 @@ function showSobre() {
  */
 function reloadMatriz() {
     // Percorre todos os espaços marcados
-    $('.campo-rainha').each(function(i, e) {
+    var rainhas = document.getElementsByClassName('campo-rainha');
+    var length = rainhas.length;
+    var i, e;
+    for (i = 0; i < length; i++) {
+        e = rainhas[i];
         // Pega a linha e a coluna pelo id
         var id = e.id.split('-');
         var linha = parseInt(id[1]);
@@ -166,7 +171,7 @@ function reloadMatriz() {
         // Seta o valor como marcado e redefine o tabuleiro
         posicoes[linha][coluna] = 1;
         setValues(linha, coluna, 2);
-    });
+    }
     // Seta o layout dos espaçoes
     setLayout();
 }
@@ -182,7 +187,7 @@ function resetGame() {
         }
     }
     setLayout();
-	$('#estatistica label').html('');
-	$('#estatistica').hide();
+    document.getElementById('estatistica').style.display = 'none';
+    document.getElementById('estatistica-passos').innerText = '';
     venceu = false;
 }

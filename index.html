@@ -1,54 +1,84 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Trabalho Grafos Jogos - 8 Rainhas</title>
+        <title>8 Rainhas</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="css/style.css" />
-        <script src="js/jquery-1.9.1.min.js" type="text/javascript"></script>
         <script src="js/jogo.js" type="text/javascript"></script>
         <script src="js/arvore.js" type="text/javascript"></script>
         <script src="js/busca.js" type="text/javascript"></script>
     </head>
     <body>
-        <div id="workarea" class="area"></div>
-        <div id="footer" class="area">
-            <button type="button" onclick="resetGame();">Reiniciar</button>
-            <button type="button" onclick="showSobre();">Sobre</button>
-            <button type="button" onclick="buscaCega();">Busca Cega - Profundidade limitada</button>
-            <button type="button" onclick="buscaHeuristica();">Busca Heurística - </button>
-			<div id="estatistica">
-				Número de passos efetuados: <label></label>
-			</div>
+        <div id="workarea" class="area">
+            <div id="item-0-0" onclick="setPoint(0, 0);" class="campo-tabuleiro"></div>
+            <div id="item-0-1" onclick="setPoint(0, 1);" class="campo-tabuleiro campo-gray"></div>
+            <div id="item-0-2" onclick="setPoint(0, 2);" class="campo-tabuleiro"></div>
+            <div id="item-0-3" onclick="setPoint(0, 3);" class="campo-tabuleiro campo-gray"></div>
+            <div id="item-0-4" onclick="setPoint(0, 4);" class="campo-tabuleiro"></div>
+            <div id="item-0-5" onclick="setPoint(0, 5);" class="campo-tabuleiro campo-gray"></div>
+            <div id="item-0-6" onclick="setPoint(0, 6);" class="campo-tabuleiro"></div>
+            <div id="item-0-7" onclick="setPoint(0, 7);" class="campo-tabuleiro campo-gray"></div>
+            <div id="item-1-0" onclick="setPoint(1, 0);" class="campo-tabuleiro campo-gray"></div>
+            <div id="item-1-1" onclick="setPoint(1, 1);" class="campo-tabuleiro"></div>
+            <div id="item-1-2" onclick="setPoint(1, 2);" class="campo-tabuleiro campo-gray"></div>
+            <div id="item-1-3" onclick="setPoint(1, 3);" class="campo-tabuleiro"></div>
+            <div id="item-1-4" onclick="setPoint(1, 4);" class="campo-tabuleiro campo-gray"></div>
+            <div id="item-1-5" onclick="setPoint(1, 5);" class="campo-tabuleiro"></div>
+            <div id="item-1-6" onclick="setPoint(1, 6);" class="campo-tabuleiro campo-gray"></div>
+            <div id="item-1-7" onclick="setPoint(1, 7);" class="campo-tabuleiro"></div>
+            <div id="item-2-0" onclick="setPoint(2, 0);" class="campo-tabuleiro"></div>
+            <div id="item-2-1" onclick="setPoint(2, 1);" class="campo-tabuleiro campo-gray"></div>
+            <div id="item-2-2" onclick="setPoint(2, 2);" class="campo-tabuleiro"></div>
+            <div id="item-2-3" onclick="setPoint(2, 3);" class="campo-tabuleiro campo-gray"></div>
+            <div id="item-2-4" onclick="setPoint(2, 4);" class="campo-tabuleiro"></div>
+            <div id="item-2-5" onclick="setPoint(2, 5);" class="campo-tabuleiro campo-gray"></div>
+            <div id="item-2-6" onclick="setPoint(2, 6);" class="campo-tabuleiro"></div>
+            <div id="item-2-7" onclick="setPoint(2, 7);" class="campo-tabuleiro campo-gray"></div>
+            <div id="item-3-0" onclick="setPoint(3, 0);" class="campo-tabuleiro campo-gray"></div>
+            <div id="item-3-1" onclick="setPoint(3, 1);" class="campo-tabuleiro"></div>
+            <div id="item-3-2" onclick="setPoint(3, 2);" class="campo-tabuleiro campo-gray"></div>
+            <div id="item-3-3" onclick="setPoint(3, 3);" class="campo-tabuleiro"></div>
+            <div id="item-3-4" onclick="setPoint(3, 4);" class="campo-tabuleiro campo-gray"></div>
+            <div id="item-3-5" onclick="setPoint(3, 5);" class="campo-tabuleiro"></div>
+            <div id="item-3-6" onclick="setPoint(3, 6);" class="campo-tabuleiro campo-gray"></div>
+            <div id="item-3-7" onclick="setPoint(3, 7);" class="campo-tabuleiro"></div>
+            <div id="item-4-0" onclick="setPoint(4, 0);" class="campo-tabuleiro"></div>
+            <div id="item-4-1" onclick="setPoint(4, 1);" class="campo-tabuleiro campo-gray"></div>
+            <div id="item-4-2" onclick="setPoint(4, 2);" class="campo-tabuleiro"></div>
+            <div id="item-4-3" onclick="setPoint(4, 3);" class="campo-tabuleiro campo-gray"></div>
+            <div id="item-4-4" onclick="setPoint(4, 4);" class="campo-tabuleiro"></div>
+            <div id="item-4-5" onclick="setPoint(4, 5);" class="campo-tabuleiro campo-gray"></div>
+            <div id="item-4-6" onclick="setPoint(4, 6);" class="campo-tabuleiro"></div>
+            <div id="item-4-7" onclick="setPoint(4, 7);" class="campo-tabuleiro campo-gray"></div>
+            <div id="item-5-0" onclick="setPoint(5, 0);" class="campo-tabuleiro campo-gray"></div>
+            <div id="item-5-1" onclick="setPoint(5, 1);" class="campo-tabuleiro"></div>
+            <div id="item-5-2" onclick="setPoint(5, 2);" class="campo-tabuleiro campo-gray"></div>
+            <div id="item-5-3" onclick="setPoint(5, 3);" class="campo-tabuleiro"></div>
+            <div id="item-5-4" onclick="setPoint(5, 4);" class="campo-tabuleiro campo-gray"></div>
+            <div id="item-5-5" onclick="setPoint(5, 5);" class="campo-tabuleiro"></div>
+            <div id="item-5-6" onclick="setPoint(5, 6);" class="campo-tabuleiro campo-gray"></div>
+            <div id="item-5-7" onclick="setPoint(5, 7);" class="campo-tabuleiro"></div>
+            <div id="item-6-0" onclick="setPoint(6, 0);" class="campo-tabuleiro"></div>
+            <div id="item-6-1" onclick="setPoint(6, 1);" class="campo-tabuleiro campo-gray"></div>
+            <div id="item-6-2" onclick="setPoint(6, 2);" class="campo-tabuleiro"></div>
+            <div id="item-6-3" onclick="setPoint(6, 3);" class="campo-tabuleiro campo-gray"></div>
+            <div id="item-6-4" onclick="setPoint(6, 4);" class="campo-tabuleiro"></div>
+            <div id="item-6-5" onclick="setPoint(6, 5);" class="campo-tabuleiro campo-gray"></div>
+            <div id="item-6-6" onclick="setPoint(6, 6);" class="campo-tabuleiro"></div>
+            <div id="item-6-7" onclick="setPoint(6, 7);" class="campo-tabuleiro campo-gray"></div>
+            <div id="item-7-0" onclick="setPoint(7, 0);" class="campo-tabuleiro campo-gray"></div>
+            <div id="item-7-1" onclick="setPoint(7, 1);" class="campo-tabuleiro"></div>
+            <div id="item-7-2" onclick="setPoint(7, 2);" class="campo-tabuleiro campo-gray"></div>
+            <div id="item-7-3" onclick="setPoint(7, 3);" class="campo-tabuleiro"></div>
+            <div id="item-7-4" onclick="setPoint(7, 4);" class="campo-tabuleiro campo-gray"></div>
+            <div id="item-7-5" onclick="setPoint(7, 5);" class="campo-tabuleiro"></div>
+            <div id="item-7-6" onclick="setPoint(7, 6);" class="campo-tabuleiro campo-gray"></div>
+            <div id="item-7-7" onclick="setPoint(7, 7);" class="campo-tabuleiro"></div>
         </div>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                var div = '';
-                /*
-                 * Define o layout das 64 peças do tabuleiro
-                 */
-                for (var i = 0; i < 64; i++) {
-                    var linha = parseInt(i / 8);
-                    var coluna = i % 8;
-                    var _i = i + 1;
-                    // Faz a troca de layout das linhas, verificando se ela é par ou impar
-                    if (linha % 2 == 0) {
-                        // Faz a troca de layout das colunas, verificando se ela é par ou impar
-                        if (coluna % 2 == 0) {
-                            div += "<div id='item-" + linha + "-" + coluna +"' onclick='setPoint(" + linha + ", " + coluna  + ");' class='campo-tabuleiro'>" + _i + "</div>";
-                        } else {
-                            div += "<div id='item-" + linha + "-" + coluna +"' onclick='setPoint(" + linha + ", " + coluna  + ");' class='campo-tabuleiro campo-gray'>" + _i + "</div>";
-                        }
-                    } else {
-                        // Faz a troca de layout das colunas, verificando se ela é par ou impar
-                        if (coluna % 2 == 1) {
-                            div += "<div id='item-" + linha + "-" + coluna +"' onclick='setPoint(" + linha + ", " + coluna  + ");' class='campo-tabuleiro'>" + _i + "</div>";
-                        } else {
-                            div += "<div id='item-" + linha + "-" + coluna +"' onclick='setPoint(" + linha + ", " + coluna  + ");' class='campo-tabuleiro campo-gray'>" + _i + "</div>";
-                        }
-                    }
-                }
-                $('#workarea').html(div);
-            });
-        </script>
+        <button type="button" onclick="resetGame();">Reiniciar</button>
+        <button type="button" onclick="buscaCega();">Solução (Busca Cega Profundidade)</button>
+		<div id="estatistica">
+			Número de passos efetuados: <label id="estatistica-passos"></label>
+		</div>
     </body>
 </html>

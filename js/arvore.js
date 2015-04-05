@@ -79,7 +79,6 @@ function simulaMatriz(tabuleiro) {
         // Marca os pontos até encontrar a posição inicial
         var pai = tabuleiro.pai;
         while (typeof(pai.pai) != 'undefined') {
-            //console.log(pai);
             posicoes = setValuesMatriz(pai.linha, pai.coluna, 2, posicoes);
             posicoes[pai.linha][pai.coluna] = 1;
             pai = pai.pai;
