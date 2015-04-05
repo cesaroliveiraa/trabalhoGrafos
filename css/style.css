@@ -1,6 +1,8 @@
+#header, #workarea, #footer { width: 650px; }
+#header, #footer { margin: 20px auto; }
+h1, p { text-align: center; }
 #workarea {
     height: 650px;
-    width: 650px;
     margin: auto;
     display: block;
 }
